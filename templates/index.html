@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SRCH</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0f;
+      --surface:  #111118;
+      --border:   #1e1e2e;
+      --accent:   #7c3aed;
+      --accent2:  #a855f7;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --green:    #22c55e;
+      --card-bg:  #13131c;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── HEADER ── */
+    header {
+      width: 100%;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .reindex-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .reindex-btn:hover { border-color: var(--accent); color: var(--accent2); }
+    .reindex-btn.spinning { color: var(--accent2); border-color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      margin-top: 5rem;
+      text-align: center;
+      width: 100%;
+      max-width: 680px;
+      padding: 0 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 30%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      margin-top: 0.75rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── SEARCH BOX ── */
+    .search-wrap {
+      margin-top: 2.5rem;
+      width: 100%;
+      max-width: 680px;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .search-wrap form {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .search-input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 1.2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+    }
+    .search-input::placeholder { color: var(--muted); }
+
+    .search-btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border: none;
+      color: #fff;
+      padding: 0.85rem 1.6rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .search-btn:hover { opacity: 0.9; }
+    .search-btn:active { transform: scale(0.97); }
+
+    /* ── HINTS ── */
+    .hints {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .hint {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.15s;
+      letter-spacing: 0.03em;
+    }
+    .hint:hover { border-color: var(--accent); color: var(--accent2); }
+
+    /* ── RESULTS ── */
+    .results-section {
+      width: 100%;
+      max-width: 680px;
+      padding: 0 1.5rem;
+      margin-top: 2.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .results-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+    }
+    .results-meta span { color: var(--accent2); font-weight: 600; }
+
+    .result-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.15s;
+      animation: fadeUp 0.25s ease both;
+    }
+    .result-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .rank {
+      font-size: 0.7rem;
+      color: var(--muted);
+      min-width: 1.4rem;
+      padding-top: 0.15rem;
+      font-weight: 700;
+    }
+
+    .card-body { flex: 1; }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .card-snippet {
+      margin-top: 0.3rem;
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .score-badge {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      background: rgba(124,58,237,0.15);
+      color: var(--accent2);
+      border: 1px solid rgba(124,58,237,0.3);
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--muted);
+    }
+    .no-results .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    /* ── EMPTY STATE ── */
+    .empty-state {
+      margin-top: 4rem;
+      text-align: center;
+      color: var(--muted);
+    }
+    .empty-state .big { font-size: 3rem; margin-bottom: 0.5rem; }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      color: var(--accent2);
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">SRCH</div>
+    <button class="reindex-btn" onclick="doReindex(this)">⟳ Reindex</button>
+  </header>
+
+  {{ if not .Query }}
+  <div class="hero">
+    <h1>Search.<br/>Ranked. Fast.</h1>
+    <p>BM25 ranking · Boolean queries · Inverted index · Built in Go</p>
+  </div>
+  {{ end }}
+
+  <div class="search-wrap" {{ if .Query }}style="margin-top:2.5rem"{{ end }}>
+    <form method="GET" action="/">
+      <input
+        class="search-input"
+        type="text"
+        name="q"
+        placeholder="Search anything…"
+        value="{{ .Query }}"
+        autofocus
+        autocomplete="off"
+      />
+      <button class="search-btn" type="submit">Search</button>
+    </form>
+    <div class="hints">
+      <span class="hint" onclick="setQuery('python data')">python data</span>
+      <span class="hint" onclick="setQuery('machine AND learning')">machine AND learning</span>
+      <span class="hint" onclick="setQuery('database OR python')">database OR python</span>
+      <span class="hint" onclick="setQuery('database AND NOT SQL')">database AND NOT SQL</span>
+    </div>
+  </div>
+
+  {{ if .Query }}
+  <div class="results-section">
+    {{ if .Results }}
+    <div class="results-meta">
+      <span>{{ .Total }}</span> result{{ if gt .Total 1 }}s{{ end }} for &ldquo;{{ .Query }}&rdquo;
+    </div>
+    {{ range $i, $r := .Results }}
+    <div class="result-card">
+      <div class="rank">#{{ add $i 1 }}</div>
+      <div class="card-body">
+        <div class="card-title">{{ $r.Name }}</div>
+        <div class="card-snippet">{{ $r.Snippet }}</div>
+      </div>
+      <div class="score-badge">{{ printf "%.3f" $r.Score }}</div>
+    </div>
+    {{ end }}
+    {{ else }}
+    <div class="no-results">
+      <div class="icon">🔍</div>
+      <div>No results for &ldquo;{{ .Query }}&rdquo;</div>
+    </div>
+    {{ end }}
+  </div>
+  {{ else }}
+  <div class="empty-state">
+    <div class="big">⚡</div>
+    <div>Type a query above to get started</div>
+  </div>
+  {{ end }}
+
+  <div id="toast"></div>
+
+  <script>
+    function setQuery(q) {
+      document.querySelector('.search-input').value = q;
+      document.querySelector('form').submit();
+    }
+
+    function doReindex(btn) {
+      btn.classList.add('spinning');
+      btn.textContent = '⟳ Indexing…';
+      fetch('/reindex')
+        .then(r => r.json())
+        .then(d => {
+          showToast(`✓ Indexed ${d.docs} docs · ${d.terms} terms`);
+          btn.textContent = '⟳ Reindex';
+          btn.classList.remove('spinning');
+        })
+        .catch(() => {
+          showToast('✗ Reindex failed');
+          btn.textContent = '⟳ Reindex';
+          btn.classList.remove('spinning');
+        });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+  </script>
+</body>
+</html>

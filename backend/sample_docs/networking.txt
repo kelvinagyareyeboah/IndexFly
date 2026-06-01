@@ -1,0 +1,8 @@
+Computer networks enable communication between devices using protocols that define rules for data exchange.
+The TCP/IP model has four layers: network access, internet, transport, and application, each handling different aspects of communication.
+TCP provides reliable, ordered, and error-checked delivery of data between applications using a three-way handshake.
+UDP is a connectionless protocol that sacrifices reliability for low latency, used in video streaming and online gaming.
+HTTP/2 multiplexes multiple requests over a single TCP connection, reducing latency compared to HTTP/1.1.
+DNS translates human-readable domain names into IP addresses using a hierarchical distributed database system.
+TLS encrypts data in transit using asymmetric cryptography for key exchange and symmetric cryptography for bulk data transfer.
+CDNs cache content at edge servers geographically close to users to reduce latency and origin server load.

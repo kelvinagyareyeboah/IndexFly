@@ -1,0 +1,8 @@
+Databases are organized systems for storing, retrieving, and managing structured or unstructured data.
+Relational databases like PostgreSQL and MySQL store data in tables with rows and columns and enforce ACID properties.
+ACID stands for Atomicity, Consistency, Isolation, and Durability — the four properties that guarantee reliable transactions.
+NoSQL databases like MongoDB, Cassandra, and DynamoDB sacrifice strict consistency for horizontal scalability and flexibility.
+Database indexing creates auxiliary data structures that speed up query execution at the cost of additional write overhead.
+B-tree indexes are the most common database index structure, providing O(log n) lookup, insert, and delete operations.
+Query optimizers analyze SQL queries and choose the most efficient execution plan based on table statistics and available indexes.
+Connection pooling reuses database connections to reduce the overhead of establishing new connections for each query.

@@ -1,0 +1,7 @@
+Cloud computing delivers computing services including servers, storage, databases, networking, and software over the internet.
+Amazon Web Services offers over 200 services including EC2 for compute, S3 for object storage, and RDS for managed databases.
+Infrastructure as Code tools like Terraform and AWS CloudFormation allow teams to provision cloud resources declaratively.
+Serverless computing with AWS Lambda and Google Cloud Functions lets developers run code without managing servers.
+Kubernetes is an open-source container orchestration system that automates deployment, scaling, and management of containerized applications.
+Docker containers package applications with their dependencies into isolated units that run consistently across environments.
+Microservices architecture decomposes applications into small independent services that communicate over APIs.

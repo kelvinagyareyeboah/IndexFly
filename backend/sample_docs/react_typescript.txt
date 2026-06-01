@@ -1,0 +1,7 @@
+React is a JavaScript library for building user interfaces using a component-based architecture developed by Meta.
+React's virtual DOM diffing algorithm minimizes actual DOM mutations, making UI updates fast and efficient.
+Hooks like useState, useEffect, useCallback, and useMemo allow functional components to manage state and side effects.
+React's reconciliation algorithm determines the minimal set of changes needed to update the DOM when state changes.
+TypeScript adds static type checking to JavaScript, catching errors at compile time and improving developer experience.
+Vite is a modern frontend build tool that uses native ES modules for instant hot module replacement during development.
+Tailwind CSS is a utility-first CSS framework that enables rapid UI development without leaving your HTML or JSX.

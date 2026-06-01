@@ -1,0 +1,8 @@
+API design is the process of defining how software components communicate with each other through well-defined interfaces.
+REST APIs use HTTP methods GET, POST, PUT, DELETE to perform CRUD operations on resources identified by URLs.
+GraphQL is a query language for APIs that allows clients to request exactly the data they need, reducing over-fetching.
+gRPC uses Protocol Buffers for serialization and HTTP/2 for transport, enabling high-performance inter-service communication.
+API versioning strategies include URL versioning, header versioning, and query parameter versioning to manage breaking changes.
+Rate limiting protects APIs from abuse by restricting the number of requests a client can make in a given time window.
+API gateways handle cross-cutting concerns like authentication, rate limiting, logging, and routing for microservices.
+OpenAPI and Swagger provide a standard way to describe REST APIs enabling automatic documentation and client generation.

@@ -1,0 +1,8 @@
+Security engineering protects systems from unauthorized access, data breaches, and malicious attacks.
+SQL injection attacks insert malicious SQL code into queries to manipulate databases and extract sensitive data.
+Cross-site scripting XSS attacks inject malicious scripts into web pages viewed by other users to steal session tokens.
+Authentication verifies identity while authorization determines what an authenticated user is permitted to do.
+JSON Web Tokens JWT are a compact way to transmit claims between parties as a digitally signed JSON object.
+OAuth 2.0 is an authorization framework that allows third-party applications to access user resources without exposing credentials.
+Encryption at rest protects stored data while encryption in transit protects data moving across networks using TLS.
+Zero trust security assumes no implicit trust and requires continuous verification of every user and device.

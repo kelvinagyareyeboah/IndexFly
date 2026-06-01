@@ -1,0 +1,7 @@
+Concurrency allows multiple tasks to make progress simultaneously by interleaving execution on one or more processors.
+Parallelism executes multiple tasks at exactly the same time using multiple CPU cores for true simultaneous execution.
+Go's goroutines are lightweight threads managed by the Go runtime that can number in the millions on a single machine.
+Channels in Go provide a typed conduit for goroutines to communicate and synchronize without sharing memory.
+The actor model treats concurrent entities as actors that communicate exclusively through message passing, used in Erlang and Akka.
+Lock-free data structures use atomic CPU instructions like compare-and-swap to avoid mutex overhead in concurrent code.
+Thread pools reuse a fixed number of threads to execute tasks from a queue, avoiding the overhead of creating new threads.

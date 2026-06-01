@@ -1,0 +1,7 @@
+Go is a statically typed, compiled programming language designed at Google for building scalable and reliable software.
+Go's concurrency model is built around goroutines and channels, making it easy to write concurrent programs without shared memory.
+The Go standard library is comprehensive, covering HTTP servers, JSON encoding, file I/O, cryptography, and testing.
+Go compiles to a single static binary with no runtime dependencies, making deployment simple and containers small.
+Interfaces in Go are satisfied implicitly, enabling duck typing and clean separation between packages.
+Go's garbage collector has been continuously improved to achieve sub-millisecond pause times suitable for latency-sensitive services.
+Popular Go projects include Kubernetes, Docker, Terraform, CockroachDB, and Prometheus.

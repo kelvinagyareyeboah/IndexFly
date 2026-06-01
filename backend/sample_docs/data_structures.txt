@@ -1,0 +1,8 @@
+Data structures are ways of organizing data in memory to enable efficient access and modification.
+Arrays store elements in contiguous memory locations enabling O(1) random access by index.
+Linked lists store elements in nodes where each node points to the next, enabling O(1) insertion and deletion at known positions.
+Stacks follow last-in first-out order and are used in function call management, expression parsing, and backtracking algorithms.
+Queues follow first-in first-out order and are used in breadth-first search, task scheduling, and message passing systems.
+Heaps are complete binary trees that satisfy the heap property, enabling O(log n) insert and O(1) min or max access.
+Graphs consist of vertices and edges and model relationships in social networks, maps, dependency graphs, and web links.
+Tries are tree structures optimized for prefix-based string operations like autocomplete and spell checking.

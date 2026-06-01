@@ -1,0 +1,6 @@
+Distributed systems are computer systems where components located on networked computers communicate and coordinate their actions by passing messages.
+The CAP theorem states that a distributed system can only guarantee two of three properties: consistency, availability, and partition tolerance.
+Systems like Apache Kafka, Apache Zookeeper, and etcd are foundational to building reliable distributed architectures.
+Consensus algorithms such as Raft and Paxos allow distributed nodes to agree on a single value even in the presence of failures.
+Google's Spanner database achieves global consistency using TrueTime, a globally synchronized clock API backed by GPS and atomic clocks.
+Eventual consistency is a model used in systems like Amazon DynamoDB where replicas converge to the same value given enough time without new updates.

@@ -1,0 +1,8 @@
+System design interviews test a candidate's ability to architect large-scale distributed systems under constraints.
+Common system design topics include designing URL shorteners, rate limiters, news feeds, notification systems, and search engines.
+A good system design answer covers requirements clarification, capacity estimation, high-level design, deep dives, and tradeoffs.
+Load balancers distribute incoming traffic across multiple servers to ensure no single server becomes a bottleneck.
+Horizontal scaling adds more machines to a system while vertical scaling increases the resources of existing machines.
+Caching with Redis or Memcached reduces database load by storing frequently accessed data in memory.
+Content delivery networks distribute static assets geographically to reduce latency for end users around the world.
+Database sharding partitions data across multiple database instances to handle write throughput beyond a single node's capacity.

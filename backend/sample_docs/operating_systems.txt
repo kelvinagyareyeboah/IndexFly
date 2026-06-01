@@ -1,0 +1,7 @@
+Operating systems manage hardware resources and provide services for computer programs through a kernel.
+Process scheduling algorithms like round-robin, priority scheduling, and CFS determine which process runs on the CPU at any time.
+Virtual memory allows processes to use more memory than physically available by mapping virtual addresses to physical pages on disk.
+Concurrency bugs like race conditions, deadlocks, and livelocks arise when multiple threads access shared resources without proper synchronization.
+Mutexes, semaphores, and condition variables are synchronization primitives used to coordinate access to shared resources.
+The Linux kernel uses a monolithic architecture where all OS services run in kernel space for performance.
+System calls are the interface between user-space programs and the kernel, allowing programs to request OS services.

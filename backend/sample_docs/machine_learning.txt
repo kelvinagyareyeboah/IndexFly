@@ -1,0 +1,8 @@
+Machine learning is a branch of artificial intelligence where systems learn patterns from data without being explicitly programmed.
+Supervised learning trains models on labeled data to predict outputs for unseen inputs using algorithms like linear regression and neural networks.
+Unsupervised learning finds hidden patterns in unlabeled data through clustering algorithms like k-means and dimensionality reduction like PCA.
+Neural networks are computational models inspired by the brain, consisting of layers of interconnected nodes that transform input data.
+Deep learning uses neural networks with many layers to learn hierarchical representations of data for tasks like image recognition and NLP.
+Gradient descent is the optimization algorithm used to minimize a model's loss function by iteratively adjusting weights.
+Overfitting occurs when a model learns the training data too well and fails to generalize to new unseen data.
+Transformers are a neural network architecture that uses self-attention mechanisms and power modern large language models like GPT.

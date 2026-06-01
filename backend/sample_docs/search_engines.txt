@@ -1,0 +1,8 @@
+An inverted index maps terms to the list of documents that contain them, enabling fast full-text search.
+Building an inverted index involves tokenization, stop word removal, stemming, and posting list construction.
+Search engines like Elasticsearch and Apache Solr use inverted indexes at their core to serve queries in milliseconds.
+BM25, or Best Match 25, is a probabilistic ranking function used by search engines to rank documents by relevance to a query.
+BM25 improves on TF-IDF by normalizing term frequency against document length, preventing long documents from dominating results.
+The BM25 formula uses two tuning parameters: k1 controls term frequency saturation and b controls document length normalization.
+Query processing in a search engine involves parsing, term lookup in the inverted index, scoring, and result ranking.
+Boolean retrieval allows users to combine query terms with AND, OR, and NOT operators to filter document sets precisely.

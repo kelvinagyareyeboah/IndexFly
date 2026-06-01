@@ -1,0 +1,3 @@
+Web development involves building websites and web applications using technologies like HTML, CSS, and JavaScript.
+Backend development often uses frameworks like Django or Flask in Python, or Express in Node.js.
+Databases such as PostgreSQL and MongoDB store and retrieve data for web applications.

@@ -1,0 +1,3 @@
+Data science combines statistics, mathematics, and programming to extract insights from large datasets.
+Tools like pandas, NumPy, and Matplotlib are essential for data analysis and visualization in Python.
+Data scientists often work with machine learning models to build predictive systems.

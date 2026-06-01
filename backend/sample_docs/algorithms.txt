@@ -1,0 +1,8 @@
+Algorithms are step-by-step procedures for solving computational problems efficiently.
+Big O notation describes the upper bound of an algorithm's time or space complexity as input size grows.
+Sorting algorithms like quicksort, mergesort, and heapsort are fundamental to computer science with O(n log n) average complexity.
+Graph algorithms such as Dijkstra's shortest path, BFS, and DFS are essential for network routing and traversal problems.
+Dynamic programming solves complex problems by breaking them into overlapping subproblems and storing results to avoid recomputation.
+Hash tables provide O(1) average time complexity for insert, delete, and lookup operations using a hash function.
+Binary search reduces search time to O(log n) by repeatedly halving the search space on a sorted array.
+Tree data structures including binary search trees, AVL trees, and red-black trees maintain sorted data with efficient operations.
