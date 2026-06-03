@@ -6,6 +6,7 @@ import QueryHints from './components/QueryHints'
 import StatsBar from './components/StatsBar'
 import Pagination from './components/Pagination'
 import type { SearchResponse, StatsResponse } from './types'
+import { api } from './api'
 
 const LIMIT = 10
 
@@ -18,12 +19,12 @@ export default function App() {
   const [elapsed, setElapsed] = useState<number | undefined>()
   const [reindexing, setReindexing] = useState(false)
   const [toast, setToast] = useState('')
-  const toastTimer = useRef<ReturnType<typeof setTimeout>>()
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>()
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   // Load stats on mount
   useEffect(() => {
-    fetch('/api/stats')
+    fetch(api('/api/stats'))
       .then(r => r.json())
       .then(setStats)
       .catch(() => {})
@@ -42,7 +43,7 @@ export default function App() {
     const t0 = performance.now()
     try {
       const res = await fetch(
-        `/api/search?q=${encodeURIComponent(q)}&page=${page}&limit=${LIMIT}`
+        api(`/api/search?q=${encodeURIComponent(q)}&page=${page}&limit=${LIMIT}`)
       )
       const data: SearchResponse = await res.json()
       setElapsed(Math.round(performance.now() - t0))
@@ -71,7 +72,7 @@ export default function App() {
   const doReindex = useCallback(async () => {
     setReindexing(true)
     try {
-      const res = await fetch('/api/reindex')
+      const res = await fetch(api('/api/reindex'))
       const data = await res.json()
       setStats({ docs: data.docs, terms: data.terms, avg_dl: 0 })
       showToast(`✓ Indexed ${data.docs} docs · ${data.terms} terms`)

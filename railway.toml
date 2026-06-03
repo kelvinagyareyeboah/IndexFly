@@ -1,0 +1,7 @@
+[build]
+  builder = "DOCKERFILE"
+  dockerfilePath = "Dockerfile.backend"
+
+[deploy]
+  startCommand = "./main"
+  restartPolicyType = "ON_FAILURE"

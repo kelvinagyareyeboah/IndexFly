@@ -25,7 +25,16 @@ var (
 
 func cors(next http.HandlerFunc) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:5173")
+		origin := r.Header.Get("Origin")
+		allowedOrigin := os.Getenv("ALLOWED_ORIGIN")
+		if allowedOrigin == "" {
+			allowedOrigin = "*"
+		}
+		if origin != "" {
+			w.Header().Set("Access-Control-Allow-Origin", allowedOrigin)
+		} else {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+		}
 		w.Header().Set("Access-Control-Allow-Methods", "GET, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		if r.Method == http.MethodOptions {
@@ -157,11 +166,23 @@ func main() {
 		loadSnippets()
 	}
 
+	// Register API endpoints
 	http.HandleFunc("/api/search", cors(handleSearch))
 	http.HandleFunc("/api/autocomplete", cors(handleAutocomplete))
 	http.HandleFunc("/api/reindex", cors(handleReindex))
 	http.HandleFunc("/api/stats", cors(handleStats))
 
-	fmt.Printf("\n  🔍  API running → http://localhost%s\n\n", port)
-	log.Fatal(http.ListenAndServe(port, nil))
+	// Serve React frontend built assets from the 'dist' directory
+	fs := http.FileServer(http.Dir("dist"))
+	http.Handle("/", fs)
+
+	// Determine port from environment variable (default: 8080)
+	portEnv := os.Getenv("PORT")
+	if portEnv == "" {
+		portEnv = "8080"
+	}
+	addr := ":" + portEnv
+
+	fmt.Printf("\n  🔍  Search Engine running → http://localhost%s\n\n", addr)
+	log.Fatal(http.ListenAndServe(addr, nil))
 }

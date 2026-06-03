@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, type FormEvent, type KeyboardEvent } from 'react'
 import { Search, X } from 'lucide-react'
 import clsx from 'clsx'
+import { api } from '../api'
 
 interface Props {
   value: string
@@ -15,7 +16,7 @@ export default function SearchBar({ value, onChange, onSubmit, loading, compact 
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [activeIdx, setActiveIdx] = useState(-1)
   const [open, setOpen] = useState(false)
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>()
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   // Global "/" shortcut to focus
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function SearchBar({ value, onChange, onSubmit, loading, compact 
     }
     debounceRef.current = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/autocomplete?q=${encodeURIComponent(lastWord)}`)
+        const res = await fetch(api(`/api/autocomplete?q=${encodeURIComponent(lastWord)}`))
         const data: string[] = await res.json()
         setSuggestions(data)
         setOpen(data.length > 0)
